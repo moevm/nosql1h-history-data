@@ -6,6 +6,7 @@ callback = function (result, status) {
     console.log(status)
 };
 
+var infowindow = new google.maps.InfoWindow();
 
 function codeAddress() {
     geocoder.geocode( { 'address': address}, function(results, status) {
@@ -17,9 +18,21 @@ function codeAddress() {
 
             });
 
+            marker.addListener( 'click', function () {
+                map.setZoom(16)
+               infowindow.setContent("Home.. Sweet home..")
+               infowindow.open(map, marker)
+            })
+
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
     });
 }
+
+
+
+
+
+
 codeAddress();
