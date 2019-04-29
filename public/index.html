@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
   <title>Simple Map</title>
   <meta name="viewport" content="initial-scale=1.0">
   <meta charset="utf-8">
@@ -22,7 +24,45 @@
 
 <body>
 
+
+
 <div id="map"></div>
+<div id="button_block">
+  <button class="w3-button w3-teal w3-round-large" type="button" id="button_setting" onclick="location.href='settings.html'">Settings</button>
+</div>
+
+<div id="input_block">
+  <label>Enter name</label>
+  <input class="w3-input w3-animate-input" type="text"  id="find_input">
+  <button class="w3-button w3-teal w3-round-large" type="button" id="find_button">Find</button>
+</div>
+
+<div id="cluster_block">
+  <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-left-align w3-teal w3-round-large">
+    Clustering</button>
+
+  <div id="Demo1" class="w3-container w3-hide">
+    <input class="w3-check" type="checkbox">
+    <label>1800-1810</label>
+    <br>
+    <input class="w3-check" type="checkbox">
+    <label>1900-2000</label>
+  </div>
+</div>
+
+
+
+<script>
+  function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+      x.className += " w3-show";
+    } else {
+      x.className = x.className.replace(" w3-show", "");
+    }
+  }
+</script>
+
 <script>
   var map;
   function initMap() {
@@ -35,7 +75,8 @@
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgYLdz5UmdsjnZxrJADWvMWk6mRBewD_4&callback=initMap"></script>
-<script src="javascripts/gmaps_geocoding.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="javascripts/gmaps_geocoding.js"></script>
 </body>
 </html>

@@ -6,3 +6,40 @@ body {
 a {
   color: #00B7FF;
 }
+
+#map{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+#button_block{
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  opacity:0.9;
+  margin-left:15px;
+  z-index: 5;
+}
+
+#input_block{
+  position: absolute;
+  left: 20%;
+  top: 10px;
+  opacity:0.9;
+  margin-left:15px;
+  z-index: 5;
+
+}
+
+#cluster_block{
+  vertical-align: middle;
+  display: table-cell;
+  position: absolute;
+  left: 80%;
+  top: 10px;
+  opacity:0.9;
+  margin-left:15px;
+  z-index: 5;
+}
