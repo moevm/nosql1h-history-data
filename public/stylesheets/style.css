@@ -35,3 +35,13 @@ a {
   margin-left:15px;
   z-index: 5;
 }
+
+#info_block{
+  background: #00B7FF;
+  position: absolute;
+  left: 40%;
+  top: 10px;
+  opacity:0.9;
+  margin-left:15px;
+  z-index: 5;
+}

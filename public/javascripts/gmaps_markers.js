@@ -71,11 +71,18 @@ function show(filters) {
                codeAddress(obj[i].name + "****"+ obj[i].date, obj[i].loc)
            }
        }
-
+        $("#markers_count").html("Total markers: " + markersArray.length)
     });
 
 }
 
+$('input[type=checkbox]').change(function(){
+    if($(this).is(':checked')) {
+        applyFilters()
+    } else {
+        applyFilters()
+    }
+});
 
 function applyFilters() {
     var filterArray = []
