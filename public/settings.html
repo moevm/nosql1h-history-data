@@ -6,13 +6,25 @@
 </head>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<body>
+<body onload="onload()">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
 From: <INPUT TYPE="NUMBER" MIN="1500" MAX="2019" STEP="1" VALUE="1800" SIZE="6" id="input1">
 To:   <INPUT TYPE="NUMBER" MIN="1500" MAX="2019" STEP="1" VALUE="1900" SIZE="6" id="input2">
 <button class="w3-button w3-teal w3-round-large" type="button" id="button_setting" onclick="location.href='index.html'">Back</button>
 <button class="w3-button w3-teal w3-round-large" type="button" id="button_apply" onclick="apply()">Apply</button>
+
+<script>
+
+    function onload() {
+        var _filter = localStorage.foo ? JSON.parse(localStorage.foo) : [1500, 2019];
+        $("#input1").val(_filter[0])
+        $("#input2").val(_filter[1])
+
+    }
+
+</script>
+
 
 
 <script>

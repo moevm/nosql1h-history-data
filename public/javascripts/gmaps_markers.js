@@ -52,14 +52,14 @@ function show(filters) {
     $.get( "http://localhost:3001/", function( data ) {
 
 
-        var obj = $.parseJSON(data)
+        var obj = $.parseJSON(data);
 
-
+        var _filter = localStorage.foo ? JSON.parse(localStorage.foo) : [1500, 2019];
 
        if(filters.length !== 0){
            for (let i = 0; i <obj.length ; i++) {
                for (let j = 0; j < filters.length; j++) {
-                   if((obj[i].date <= filters[j])  && (obj[i].date >= (filters[j] -10)) )
+                   if((obj[i].date <= filters[j])  && (obj[i].date >= (filters[j] -10) && (obj[i].date >=_filter[0]) && (obj[i].date <= _filter[1])))
                        codeAddress(obj[i].name + " ******* "+ obj[i].date, obj[i].loc)
                }
 
@@ -67,7 +67,8 @@ function show(filters) {
        } else
        {
            for (let i = 0; i < obj.length; i++) {
-               codeAddress(obj[i].name + "****"+ obj[i].address, obj[i].loc)
+               if((obj[i].date >=_filter[0]) && (obj[i].date <= _filter[1]))
+               codeAddress(obj[i].name + "****"+ obj[i].date, obj[i].loc)
            }
        }
 
