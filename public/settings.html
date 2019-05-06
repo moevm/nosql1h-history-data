@@ -7,8 +7,27 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <body>
-From: <input type="date" name="bday">
-To: <input type="date" name="bday">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+From: <INPUT TYPE="NUMBER" MIN="1500" MAX="2019" STEP="1" VALUE="1800" SIZE="6" id="input1">
+To:   <INPUT TYPE="NUMBER" MIN="1500" MAX="2019" STEP="1" VALUE="1900" SIZE="6" id="input2">
 <button class="w3-button w3-teal w3-round-large" type="button" id="button_setting" onclick="location.href='index.html'">Back</button>
+<button class="w3-button w3-teal w3-round-large" type="button" id="button_apply" onclick="apply()">Apply</button>
+
+
+<script>
+    function apply() {
+        if($("#input1").val() > $("#input2").val()){
+            alert("Incorrect input")
+        } else {
+            alert("Settings have been saved")
+            foo = [$("#input1").val(), $("#input2").val()]
+            localStorage.foo = JSON.stringify(foo)
+        }
+    }
+
+</script>
+
+
 </body>
 </html>

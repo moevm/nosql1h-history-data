@@ -31,22 +31,18 @@
   <button class="w3-button w3-teal w3-round-large" type="button" id="button_setting" onclick="location.href='settings.html'">Settings</button>
 </div>
 
-<div id="input_block">
-  <label>Enter name</label>
-  <input class="w3-input w3-animate-input" type="text"  id="find_input">
-  <button class="w3-button w3-teal w3-round-large" type="button" id="find_button">Find</button>
-</div>
 
 <div id="cluster_block">
   <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-left-align w3-teal w3-round-large">
     Clustering</button>
 
   <div id="Demo1" class="w3-container w3-hide">
-    <input class="w3-check" type="checkbox">
+    <input class="w3-check" id="check1" type="checkbox" value="1810">
     <label>1800-1810</label>
     <br>
-    <input class="w3-check" type="checkbox">
-    <label>1900-2000</label>
+    <input class="w3-check" id="check2" type="checkbox" value="1910">
+    <label>1900-1910</label>
+    <button class="w3-button w3-teal w3-round-large" type="button" id="button_cluster" onclick="applyFilters()" >Apply</button>
   </div>
 </div>
 
@@ -67,7 +63,7 @@
   var map;
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
+      center: {lat: 59.932971999999997, lng: 30.2926972},
       zoom: 8
     });
   }
@@ -77,6 +73,6 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgYLdz5UmdsjnZxrJADWvMWk6mRBewD_4&callback=initMap"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="javascripts/gmaps_geocoding.js"></script>
+<script src="javascripts/gmaps_markers.js"></script>
 </body>
 </html>

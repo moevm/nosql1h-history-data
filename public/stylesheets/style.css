@@ -16,22 +16,14 @@ a {
 
 #button_block{
   position: absolute;
-  left: 50%;
+  left: 10%;
   top: 10px;
   opacity:0.9;
   margin-left:15px;
   z-index: 5;
 }
 
-#input_block{
-  position: absolute;
-  left: 20%;
-  top: 10px;
-  opacity:0.9;
-  margin-left:15px;
-  z-index: 5;
 
-}
 
 #cluster_block{
   vertical-align: middle;
