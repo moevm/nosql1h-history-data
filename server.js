@@ -1,8 +1,18 @@
 var http = require('http');
 var url = require('url')
-
+var express = require('express');
 
 http.createServer(function (req, res) {
+
+   if(req.url === "/?name=Export"){
+       //TODO export code
+       return
+   }
+
+    if(req.url === "/?name=Import"){
+        //TODO import code
+        return
+    }
 
     var MongoClient = require('mongodb').MongoClient;
 
@@ -29,5 +39,9 @@ http.createServer(function (req, res) {
             db.close();
         });
     });
+    
+    
+
+    
 }).listen(3001);
 console.log('Server running at 3001');

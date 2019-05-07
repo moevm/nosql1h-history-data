@@ -162,7 +162,7 @@ obj['dataset']['heritage_sites'].forEach(function(item, i, arr) {
 });
 
 
-const googleMapsClient = require('@google/maps').createClient({ key: 'AIzaSyBgYLdz5UmdsjnZxrJADWvMWk6mRBewD_4', Promise: Promise });
+const googleMapsClient = require('@google/maps').createClient({ key: 'YOUR KEY', Promise: Promise });
 
 for (let j = 0; j < todb.length; j++) {
     todb[j]['address'] = "Санкт-Петербург "+todb[j]['address']

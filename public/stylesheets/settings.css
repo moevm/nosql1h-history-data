@@ -1,0 +1,51 @@
+body {
+    padding: 50px;
+    font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #a7fff0;
+}
+
+#input_block{
+    vertical-align: middle;
+    display: table-cell;
+    position: absolute;
+    left: 42%;
+    top: 110px;
+    opacity:0.9;
+    margin-left:15px;
+}
+
+#button_back{
+    font-size: 30px;
+    position: absolute;
+    left: 1%;
+    top: 92%;
+    opacity:0.9;
+    margin-left:15px;
+}
+
+#button_apply{
+    font-size: 30px;
+    position: absolute;
+    left: 42%;
+    top: 240px;
+    opacity:0.9;
+    margin-left:15px;
+}
+
+#button_export{
+    font-size: 30px;
+    position: absolute;
+    left: 90%;
+    top: 85%;
+    opacity:0.9;
+    margin-left:15px;
+}
+
+#button_import{
+    font-size: 30px;
+    position: absolute;
+    left: 90%;
+    top: 92%;
+    opacity:0.9;
+    margin-left:15px;
+}

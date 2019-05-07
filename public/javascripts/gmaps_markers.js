@@ -5,10 +5,6 @@ var History = {
 }
 var markersArray = [];
 
-var Locations = {
-    loc: []
-}
-
 class history{
     constructor(ad, loc){
         this.ad = ad
@@ -50,7 +46,7 @@ function codeAddress(name, location) {
 function show(filters) {
 
     $.get( "http://localhost:3001/", function( data ) {
-
+        console.log(filters)
 
         var obj = $.parseJSON(data);
 
@@ -59,7 +55,7 @@ function show(filters) {
        if(filters.length !== 0){
            for (let i = 0; i <obj.length ; i++) {
                for (let j = 0; j < filters.length; j++) {
-                   if((obj[i].date <= filters[j])  && (obj[i].date >= (filters[j] -10) && (obj[i].date >=_filter[0]) && (obj[i].date <= _filter[1])))
+                   if((obj[i].date <= filters[j][1])  && (obj[i].date >= (filters[j][0])) && (obj[i].date >=_filter[0]) && (obj[i].date <= _filter[1]))
                        codeAddress(obj[i].name + " ******* "+ obj[i].date, obj[i].loc)
                }
 
@@ -76,6 +72,8 @@ function show(filters) {
 
 }
 
+
+
 $('input[type=checkbox]').change(function(){
     if($(this).is(':checked')) {
         applyFilters()
@@ -86,16 +84,22 @@ $('input[type=checkbox]').change(function(){
 
 function applyFilters() {
     var filterArray = []
-    for (let i = 1; i <= 2 ; i++) {
+    for (let i = 1; i <= 14 ; i++) {
 
         let name = "#check"+i
         if ($(name).prop("checked")){
-            filterArray.push(parseInt($(name).val()))
+
+            str = $(name).val()
+
+            from = parseInt(str.substring(0,4))
+            to = parseInt(str.substring(5,9))
+
+            filterArray.push([from, to])
         }
         clearOverlays()
 
     }
-
+    console.log(filterArray)
     show(filterArray)
 }
 
@@ -105,4 +109,39 @@ function clearOverlays() {
         History.ar = []
     }
     markersArray.length = 0;
+}
+
+function clust() {
+    $.get("http://localhost:3001/", function (data) {
+        var obj = $.parseJSON(data);
+        var clusters = []
+
+        for (let era = 170; era < 201; era++) {
+            clusters.push({era: era, count: 0})
+        }
+
+
+        for (let i = 0; i < clusters.length; i++) {
+            for (let j = 0; j < obj.length; j++) {
+                let from = (170 + i) * 10
+                let to = (170 + i + 1) * 10
+                if (obj[j].date >= from && obj[j].date <= to)
+                    clusters[i].count++
+
+            }
+        }
+
+
+    console.log(clusters)
+
+        for (let i = 0; i < clusters.length ; i++) {
+            var newElems = $(" <input class='w3-check' id='check"+i+"' type='checkbox' value='"+(clusters[i].era+2)*10>+"'>").append(
+                "<label>"+(clusters[i].era+1)*10+ "-"+(clusters[i].era+2)*10+"</label>"+
+                "<br>"
+            )
+        }
+
+        $('#Demo1').append(newElems)
+
+    });
 }
