@@ -48,11 +48,16 @@
 
 <script>
     function mongoexport(){
-        $.get("http://localhost:3001/", {name:"Export"})
+        $.get("http://localhost:3001/", {name:"Export"},
+                alert("Export Finished")
+        )
+
     }
     function mongoimport(){
-        $.get("http://localhost:3001/", {name:"Import"})
+        $.get("http://localhost:3001/", {name:"Import"},
+                alert("Import Finished")
+        )
     }
-</script>>
+</script>
 </body>
 </html>
