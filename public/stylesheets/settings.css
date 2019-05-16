@@ -32,6 +32,15 @@ body {
     margin-left:15px;
 }
 
+#button_drop{
+    font-size: 30px;
+    position: absolute;
+    left: 90%;
+    top: 78%;
+    opacity:0.9;
+    margin-left:15px;
+}
+
 #button_export{
     font-size: 30px;
     position: absolute;
@@ -49,3 +58,4 @@ body {
     opacity:0.9;
     margin-left:15px;
 }
+

@@ -20,6 +20,7 @@
 
     <button class="w3-button w3-teal w3-round-large" type="button" id="button_export" onclick="mongoexport()" >Export</button>
     <button class="w3-button w3-teal w3-round-large" type="button" id="button_import" onclick="mongoimport()">Import</button>
+    <button class="w3-button w3-teal w3-round-large" type="button" id="button_drop" onclick="mongodrop()">Drop DB</button>
 <script>
 
     function onload() {
@@ -56,6 +57,12 @@
     function mongoimport(){
         $.get("http://localhost:3001/", {name:"Import"},
                 alert("Import Finished")
+        )
+    }
+    
+    function mongodrop() {
+        $.get("http://localhost:3001/", {name:"Drop"},
+            alert("Drop Finished")
         )
     }
 </script>

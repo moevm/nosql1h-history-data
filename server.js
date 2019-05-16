@@ -37,7 +37,17 @@ http.createServer(function (req, res) {
         return
     }
 
-
+    if(req.url === "/?name=Drop"){
+        MongoClient.connect("mongodb://localhost:27017/", function(err, db) {
+            var dbo = db.db("history_data");
+            dbo.collection("data").drop(function(err, delOK) {
+                if (err) throw err;
+                if (delOK) console.log("Collection deleted");
+                db.close();
+            });
+        });
+        return
+    }
 
     res.writeHead(200, {
         'Content-Type': 'text/html',

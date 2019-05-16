@@ -37,49 +37,50 @@
 </div>
 
 <div id="cluster_block">
-  <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-left-align w3-teal w3-round-large">
+  <button onclick="myFunction('clusters')" class="w3-button w3-block w3-left-align w3-teal w3-round-large">
     Clustering</button>
 
-  <div id="Demo1" class="w3-container w3-hide">
+  <div id="clusters" class="w3-container w3-hide">
     <input class="w3-check" id="check1" type="checkbox" value="1800-1830">
-    <label>1800-1830</label>
+    <label id="lab1">1800-1830</label>
     <br>
     <input class="w3-check" id="check2" type="checkbox" value="1830-1860">
-    <label>1830-1860</label>
+    <label id="lab2">1830-1860</label>
     <br>
     <input class="w3-check" id="check3" type="checkbox" value="1860-1900">
-    <label>1860-1900</label>
+    <label id="lab3">1860-1900</label>
     <br>
     <input class="w3-check" id="check4" type="checkbox" value="1900-1910">
-    <label>1900-1910</label>
+    <label id="lab4">1900-1910</label>
     <br>
     <input class="w3-check" id="check5" type="checkbox" value="1910-1920">
-    <label>1910-1920</label>
+    <label id="lab5">1910-1920</label>
     <br>
     <input class="w3-check" id="check6" type="checkbox" value="1920-1930">
-    <label>1920-1930</label>
+    <label id="lab6">1920-1930</label>
     <br>
     <input class="w3-check" id="check7" type="checkbox" value="1930-1950">
-    <label>1930-1950</label>
+    <label id="lab7">1930-1950</label>
     <br>
     <input class="w3-check" id="check8" type="checkbox" value="1941-1945">
-    <label>1941-1945</label>
+    <label id="lab8">1941-1945</label>
     <br>
-    <input class="w3-check" id="check10" type="checkbox" value="1950-1970">
-    <label>1950-1970</label>
+    <input class="w3-check" id="check9" type="checkbox" value="1950-1970">
+    <label id="lab9">1950-1970</label>
     <br>
-    <input class="w3-check" id="check11" type="checkbox" value="1970-2000">
-    <label>1970-2000</label>
+    <input class="w3-check" id="check10" type="checkbox" value="1970-2000">
+    <label id="lab10">1970-2000</label>
     <br>
-    <input class="w3-check" id="check12" type="checkbox" value="1700-1800">
-    <label>18 век</label>
+    <input class="w3-check" id="check11" type="checkbox" value="1700-1800">
+    <label id="lab11">18 век</label>
     <br>
-    <input class="w3-check" id="check13" type="checkbox" value="1800-1900">
-    <label>19 век</label>
+    <input class="w3-check" id="check12" type="checkbox" value="1800-1900">
+    <label id="lab12">19 век</label>
     <br>
-    <input class="w3-check" id="check14" type="checkbox" value="1900-2019">
-    <label>20-21 век</label>
-
+    <input class="w3-check" id="check13" type="checkbox" value="1900-2019">
+    <label id="lab13">20-21 век</label>
+    <button onclick="clear_filters()" class="w3-button w3-block w3-left-align w3-teal w3-round-large">
+      Clear filters</button>
   </div>
 </div>
 
@@ -94,9 +95,12 @@
       x.className = x.className.replace(" w3-show", "");
     }
   }
-</script>
 
-<script>
+  function clear_filters() {
+    $('input[type=checkbox]').prop('checked', false)
+    applyFilters()
+  }
+
   var map;
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -104,6 +108,8 @@
       zoom: 8
     });
   }
+
+
 
 </script>
 

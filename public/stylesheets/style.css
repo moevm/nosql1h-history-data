@@ -23,7 +23,9 @@ a {
   z-index: 5;
 }
 
-
+#clusters{
+  background-color: bisque;
+}
 
 #cluster_block{
   vertical-align: middle;
