@@ -24,27 +24,7 @@ function getIcon(color) {
 }
 
 
-function street_statistics(address) {
-    reg1 = /[^,]*/
-    reg2 = /ул.|пр.|пер./
 
-    str = address.substring(16, address.length)
-
-    x = str.match(reg1)
-
-    y =x[0].match(reg2)
-    street = ""
-    if(y!== null){
-       street = x[0]
-
-    } else return
-
-    if(!isNaN(streets[street]))
-    streets[street] = streets[street] + 1
-    else
-        streets[street] = 1
-
-}
 
 function drawMarker(ad, loc, color) {
     var marker = new google.maps.Marker({
@@ -77,6 +57,7 @@ function codeAddress(name, location, year,  color) {
 function show(filters) {
 
     $.get( "http://localhost:3001/", function( data ) {
+        streets = {}
         console.log(filters)
 
 
@@ -130,7 +111,6 @@ $('input[type=checkbox]').change(function(){
     }
 });
 
-var checkbox_stack = []
 
 function applyFilters() {
     var filterArray = []
@@ -194,9 +174,41 @@ function clust() {
 
 clust();
 
-function sort_streets() {
+function show_streets_statistics() {
     x = Object.keys(streets).map(function(key) {
         return [key, streets[key]];
     });
-    console.log(x)
+    x.sort(function(a,b){
+        if (a[1] > b[1]){
+            return -1;
+        }else if (a[1] < b[1]) {
+            return  1;
+        }else{
+            return 0;
+        }
+    })
+str = x[0] + '\n' + x[1]+'\n' +x[2]
+    alert(str)
+
+}
+function street_statistics(address) {
+    reg1 = /[^,]*/
+    reg2 = /ул.|пр.|пер./
+
+    str = address.substring(16, address.length)
+
+    x = str.match(reg1)
+
+    y =x[0].match(reg2)
+    street = ""
+    if(y!== null){
+        street = x[0]
+
+    } else return
+
+    if(!isNaN(streets[street]))
+        streets[street] = streets[street] + 1
+    else
+        streets[street] = 1
+
 }
