@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="stylesheets/w3.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <title>History Data Clustering</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+
+<body onload="global_filter(); applyFilters()">
+
+
+<div id="map"></div>
+<div id="button_block">
+    <button class="w3-button w3-teal w3-round-large" type="button" id="button_setting"
+            onclick="location.href='settings.html'">Settings
+    </button>
+</div>
+
+<div id="info_block">
+    <div id="markers_count">Total markers: 0</div>
+    <div id="global_filter">Global filter: 0</div>
+</div>
+
+<div id="cluster_block">
+    <button onclick="myFunction('clusters')" class="w3-button w3-block w3-left-align w3-teal w3-round-large">
+        Clustering
+    </button>
+
+    <div id="clusters" class="w3-container w3-hide">
+        <input class="w3-check" id="check1" type="checkbox" value="1800-1830">
+        <label id="lab1">1800-1830</label>
+        <br>
+        <input class="w3-check" id="check2" type="checkbox" value="1830-1860">
+        <label id="lab2">1830-1860</label>
+        <br>
+        <input class="w3-check" id="check3" type="checkbox" value="1860-1900">
+        <label id="lab3">1860-1900</label>
+        <br>
+        <input class="w3-check" id="check4" type="checkbox" value="1900-1910">
+        <label id="lab4">1900-1910</label>
+        <br>
+        <input class="w3-check" id="check5" type="checkbox" value="1910-1920">
+        <label id="lab5">1910-1920</label>
+        <br>
+        <input class="w3-check" id="check6" type="checkbox" value="1920-1930">
+        <label id="lab6">1920-1930</label>
+        <br>
+        <input class="w3-check" id="check7" type="checkbox" value="1930-1950">
+        <label id="lab7">1930-1950</label>
+        <br>
+        <input class="w3-check" id="check8" type="checkbox" value="1941-1945">
+        <label id="lab8">1941-1945</label>
+        <br>
+        <input class="w3-check" id="check9" type="checkbox" value="1950-1970">
+        <label id="lab9">1950-1970</label>
+        <br>
+        <input class="w3-check" id="check10" type="checkbox" value="1970-2000">
+        <label id="lab10">1970-2000</label>
+        <br>
+        <input class="w3-check" id="check11" type="checkbox" value="1700-1800">
+        <label id="lab11">18 век</label>
+        <br>
+        <input class="w3-check" id="check12" type="checkbox" value="1800-1900">
+        <label id="lab12">19 век</label>
+        <br>
+        <input class="w3-check" id="check13" type="checkbox" value="1900-2019">
+        <label id="lab13">20-21 век</label>
+        <br>
+        <button onclick="clear_filters()" class="w3-button w3-block w3-left-align w3-teal w3-round-large">
+            Clear filters
+        </button>
+        <br>
+        <button onclick="show_streets_statistics()" class="w3-button w3-block w3-left-align w3-teal w3-round-large">
+            Streets statistics
+        </button>
+        <br>
+
+        <input class="w3-check" id="cirlce_mode" type="checkbox" value="1900-2019">
+        <label id="lab_circlee">Circle mode</label>
+
+    </div>
+</div>
+
+
+<script>
+    function myFunction(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") === -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+
+    function clear_filters() {
+        $('input[type=checkbox]').prop('checked', false)
+        applyFilters()
+    }
+
+    var map;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 59.932971999999997, lng: 30.2926972},
+            zoom: 8
+        });
+    }
+
+
+</script>
+
+<script>
+    function global_filter() {
+        _filter = localStorage.foo ? JSON.parse(localStorage.foo) : [1500, 2019];
+        $("#global_filter").html("Global filter: " + _filter[0] + " - " + _filter[1])
+    }
+</script>
+
+
+<script src="map.js"></script>
+<script src="jquery-3.4.1.min.js"></script>
+<script src="javascripts/gmaps_markers.js"></script>
+</body>
+</html>
