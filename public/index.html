@@ -7,13 +7,12 @@
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
-        /* Always set the map height explicitly to define the size of the div
-         * element that contains the map. */
+
         #map {
             height: 100%;
         }
 
-        /* Optional: Makes the sample page fill the window. */
+
         html, body {
             height: 100%;
             margin: 0;
@@ -92,9 +91,11 @@
         </button>
         <br>
 
-        <input class="w3-check" id="cirlce_mode" type="checkbox" value="1900-2019">
+        <input class="w3-check" id="cirlce_mode" type="checkbox">
         <label id="lab_circlee">Circle mode</label>
 
+        <input class="w3-check" id="clustering_mode" type="checkbox">
+        <label id="lab_clustering_mode">Clustering mode</label>
     </div>
 </div>
 
@@ -110,7 +111,13 @@
     }
 
     function clear_filters() {
-        $('input[type=checkbox]').prop('checked', false)
+
+
+        for (let i = 1; i <= 13; i++) {
+            let name = "#check" + i
+            $(name).prop('checked', false)
+        }
+
         applyFilters()
     }
 
@@ -134,8 +141,14 @@
 </script>
 
 
-<script src="map.js"></script>
-<script src="jquery-3.4.1.min.js"></script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<YOUR_KEY>_4&callback=initMap"></script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"> </script>
+<script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
 <script src="javascripts/gmaps_markers.js"></script>
 </body>
 </html>

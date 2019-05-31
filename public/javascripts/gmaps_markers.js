@@ -10,13 +10,18 @@ class history {
     constructor(ad, loc, year) {
         this.ad = ad
         this.loc = loc
-        this.year = year;
+
+        this.year = year
+
     }
 }
 
 var colors = ["fc0d00", "fc9700", "fcde00", "96fc00", "00f9fc", "003efc", "d500fc", "fc66b0", "ffffff", "000000", "fff4af", "ffcfc2", "400701"] //red, orange, yellow, green, light-blue, dark-blue, purple, pink, white, black, lemon, peach, dark-red
 var infowindow = new google.maps.InfoWindow();
 var streets = {}
+
+var markerCluster
+
 
 function getIcon(color) {
     return (
@@ -59,7 +64,6 @@ function show(filters) {
 
     $.get("http://localhost:3001/", function (data) {
         streets = {}
-        console.log(filters)
 
 
         var obj = $.parseJSON(data);
@@ -68,8 +72,15 @@ function show(filters) {
 
         var is_circles = false
 
+        var is_clustering = false
+
+
         if ($("#cirlce_mode").prop("checked")) {
             is_circles = true
+        }
+
+        if ($("#clustering_mode").prop("checked")) {
+            is_clustering = true
         }
 
         if (filters.length !== 0) {
@@ -87,35 +98,35 @@ function show(filters) {
                     if ((obj[i].date < filters[j][1]) && (obj[i].date >= (filters[j][0])) && (obj[i].date >= _filter[0]) && (obj[i].date <= _filter[1])) {
 
                         var flag = false;
-                    if(is_circles){
-                        if (obj[i].loc['lat'] > maxLat)
-                            maxLat = obj[i].loc['lat']
 
-                        if (minLat === 0.0)
-                            minLat = obj[i].loc['lat']
-                        else if (obj[i].loc['lat'] < minLat)
-                            minLat = obj[i].loc['lat']
+                        if(is_circles){
+                            if (obj[i].loc['lat'] > maxLat)
+                                maxLat = obj[i].loc['lat']
 
-                        if (obj[i].loc['lng'] > maxLon)
-                            maxLon = obj[i].loc['lng']
+                            if (minLat === 0.0)
+                                minLat = obj[i].loc['lat']
+                            else if (obj[i].loc['lat'] < minLat)
+                                minLat = obj[i].loc['lat']
 
-                        if (minLon === 0.0)
-                            minLon = obj[i].loc['lng']
-                        else if (obj[i].loc['lng'] < minLon)
-                            minLon = obj[i].loc['lng']
-                    }
+                            if (obj[i].loc['lng'] > maxLon)
+                                maxLon = obj[i].loc['lng']
 
-
+                            if (minLon === 0.0)
+                                minLon = obj[i].loc['lng']
+                            else if (obj[i].loc['lng'] < minLon)
+                                minLon = obj[i].loc['lng']
+                        }
 
                         for (let k = 0; k < History.ar.length; k++) {
-                            if (History.ar[k].ad === obj[i].name + " ******* " + obj[i].date &&
+                            if (History.ar[k].ad === obj[i].name + " Дата постройки:" + obj[i].date &&
                                 History.ar[k].loc === obj[i].loc &&
                                 History.ar[k].year === obj[i].date)
                                 flag = true
                         }
 
                         if (!flag) {
-                            codeAddress(obj[i].name + " ******* " + obj[i].date, obj[i].loc, obj[i].date, colors[j])
+
+                            codeAddress(obj[i].name + " Дата постройки:" + obj[i].date, obj[i].loc, obj[i].date, colors[j])
                             street_statistics(obj[i].address)
                         }
 
@@ -123,13 +134,12 @@ function show(filters) {
                     }
                 }
 
+
                 if (is_circles){
                     circles_info[j] = {
                         center: {lat: ((maxLat + minLat) / 2), lng: ((maxLon + minLon) / 2)},
                         rad: 46500* Math.sqrt(((maxLat - minLat) * (maxLat - minLat)) / 2 + ((maxLon - minLon) * (maxLon - minLon)) / 2)
                     }
-
-
 
 
                     var Circle = new google.maps.Circle({
@@ -156,11 +166,13 @@ function show(filters) {
         } else {
             for (let i = 0; i < obj.length; i++) {
                 if ((obj[i].date >= _filter[0]) && (obj[i].date <= _filter[1])) {
-                    codeAddress(obj[i].name + "****" + obj[i].date, obj[i].loc, obj[i].date, "fc0d00")
+                    codeAddress(obj[i].name + "  Дата постройки:" + obj[i].date, obj[i].loc, obj[i].date, "fc0d00")
                     street_statistics(obj[i].address)
                 }
             }
         }
+
+        if(is_clustering) clustering()
         $("#markers_count").html("Total markers: " + markersArray.length)
     });
 
@@ -180,7 +192,8 @@ $('input[type=checkbox]').change(function () {
 function applyFilters() {
     var filterArray = []
     var count = 0;
-    for (let i = 1; i <= 13;  i++) {
+
+    for (let i = 1; i <= 13; i++) {
 
         let name = "#check" + i
         if ($(name).prop("checked")) {
@@ -213,6 +226,10 @@ function clearOverlays() {
         circles_info = []
     }
     circles.length = 0
+
+    if(markerCluster!== undefined)
+        markerCluster.clearMarkers()
+
 }
 
 function clust() {
@@ -237,7 +254,6 @@ function clust() {
             }
 
             str = $("#lab" + (i + 1)).html();
-            console.log(str)
             $("#lab" + (i + 1)).html(str + "  (" + count + ")")
             count = 0;
         }
@@ -292,5 +308,15 @@ function street_statistics(address) {
         streets[street] = streets[street] + 1
     else
         streets[street] = 1
+
+
+}
+
+function clustering() {
+    markerCluster = new MarkerClusterer(map, markersArray,
+        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+    markerCluster.setMaxZoom(16)
+
 
 }

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Settings</title>
 </head>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="stylesheets/settings.css ">
+<link rel="stylesheet" href="stylesheets/w3.css">
+<link rel="stylesheet" href="stylesheets/settings.css ">
 <body onload="onload()">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="jquery-3.4.1.min.js"></script>
 <div id="input_block">
     From: <INPUT TYPE="NUMBER" MIN="1500" MAX="2019" STEP="1" VALUE="1800" SIZE="6" id="input1">
     <br>
@@ -15,12 +15,12 @@
     To: <INPUT TYPE="NUMBER" MIN="1500" MAX="2019" STEP="1" VALUE="1900" SIZE="6" id="input2">
 </div>
 
-    <button class="w3-button w3-teal w3-round-large" type="button" id="button_back" onclick="location.href='index.html'">Back</button>
-    <button class="w3-button w3-teal w3-round-large" type="button" id="button_apply" onclick="apply()">Apply</button>
+<button class="w3-button w3-teal w3-round-large" type="button" id="button_back" onclick="location.href='index.html'">Back</button>
+<button class="w3-button w3-teal w3-round-large" type="button" id="button_apply" onclick="apply()">Apply</button>
 
-    <button class="w3-button w3-teal w3-round-large" type="button" id="button_export" onclick="mongoexport()" >Export</button>
-    <button class="w3-button w3-teal w3-round-large" type="button" id="button_import" onclick="mongoimport()">Import</button>
-    <button class="w3-button w3-teal w3-round-large" type="button" id="button_drop" onclick="mongodrop()">Drop DB</button>
+<button class="w3-button w3-teal w3-round-large" type="button" id="button_export" onclick="mongoexport()" >Export</button>
+<button class="w3-button w3-teal w3-round-large" type="button" id="button_import" onclick="mongoimport()">Import</button>
+<button class="w3-button w3-teal w3-round-large" type="button" id="button_drop" onclick="mongodrop()">Drop DB</button>
 <script>
 
     function onload() {
@@ -36,7 +36,7 @@
 
 <script>
     function apply() {
-        if($("#input1").val() > $("#input2").val()){
+        if($("#input1").val() > $("#input2").val() || $("#input1").val()<0 || $("#input2").val()<0 ){
             alert("Incorrect input")
         } else {
             alert("Settings have been saved")
@@ -50,16 +50,16 @@
 <script>
     function mongoexport(){
         $.get("http://localhost:3001/", {name:"Export"},
-                alert("Export Finished")
+            alert("Export Finished")
         )
 
     }
     function mongoimport(){
         $.get("http://localhost:3001/", {name:"Import"},
-                alert("Import Finished")
+            alert("Import Finished")
         )
     }
-    
+
     function mongodrop() {
         $.get("http://localhost:3001/", {name:"Drop"},
             alert("Drop Finished")

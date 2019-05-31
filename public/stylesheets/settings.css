@@ -4,35 +4,36 @@ body {
     background-color: #a7fff0;
 }
 
-#input_block{
+#input_block {
     vertical-align: middle;
     display: table-cell;
     position: absolute;
     left: 42%;
     top: 110px;
-    opacity:0.9;
-    margin-left:15px;
+    opacity: 0.9;
+    margin-left: 15px;
 }
 
-#button_back{
+#button_back {
     font-size: 30px;
     position: absolute;
     left: 1%;
     top: 92%;
-    opacity:0.9;
-    margin-left:15px;
+    opacity: 0.9;
+    margin-left: 15px;
 }
 
-#button_apply{
+#button_apply {
     font-size: 30px;
     position: absolute;
     left: 42%;
     top: 240px;
-    opacity:0.9;
-    margin-left:15px;
+    opacity: 0.9;
+    margin-left: 15px;
 }
 
-#button_drop{
+
+#button_drop {
     font-size: 30px;
     position: absolute;
     left: 90%;
@@ -41,21 +42,24 @@ body {
     margin-left:15px;
 }
 
-#button_export{
+
+
+#button_export {
     font-size: 30px;
     position: absolute;
     left: 90%;
     top: 85%;
-    opacity:0.9;
-    margin-left:15px;
+    opacity: 0.9;
+    margin-left: 15px;
 }
 
-#button_import{
+#button_import {
     font-size: 30px;
     position: absolute;
     left: 90%;
     top: 92%;
     opacity:0.9;
     margin-left:15px;
+
 }
 
